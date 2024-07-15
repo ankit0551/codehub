@@ -40,10 +40,10 @@ const Login = () => {
     
       <div className='min-w-[500px] bg-[#151515] p-4 rounded-xl text-[#aeaeae]'>
         <div className='mb-[50px] mt-5 flex justify-center'>
-        <Link to={'/'}><h2 className='text-white tracking-tight  font-bold text-[50px]'><span>Code</span><span className='bg-blue-700 text-black rounded-[3px] px-1 mx-1'>hub</span></h2></Link>
+        <Link to={'/'}><h2 className='text-white tracking-tight  font-bold text-[50px]'><span>Code</span><span className='bg-blue-700 text-black rounded-[3px] px-1 mx-1'>Sync</span></h2></Link>
         </div>
         <h2 className='text-center text-2xl text-white font-semibold mb-1'>Member Sign in</h2>
-        <p className='text-center'>Access your codehub account</p>
+        <p className='text-center'>Access your codeSync account</p>
         <div>
 
         </div>

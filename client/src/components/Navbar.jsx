@@ -39,13 +39,13 @@ const Navbar = () => {
   return (
     <nav className='py-3 px-10 max-h-[7vh] flex justify-between items-center shadow-lg bg-[#0e0e0e]'>
       <div>
-        <Link to={'/'}><h2 className='text-white tracking-tight  font-bold text-3xl'><span>Code</span><span className='bg-blue-700 text-black rounded-[3px] px-1 mx-1'>hub</span></h2></Link>
+        <Link to={'/'}><h2 className='text-white tracking-tight  font-bold text-3xl'><span>Code</span><span className='bg-blue-700 text-black rounded-[3px] px-1 mx-1 py-1'>Sync</span></h2></Link>
       </div>
 
       {
         user ? <div className='flex gap-4 text-[#aeaeae] relative ' >
-          <div onClick={handelShowProfile} className='p-1 bg-[#181818] rounded-[50%] shadow-lg'>
-            <FaUserCircle className='user' cursor={"pointer"} size={35} color='#aeaeae' />
+          <div onClick={handelShowProfile}  className='p-1 bg-[#181818] cursor-pointer rounded-[50%] shadow-lg'>
+            <FaUserCircle  className='user'  size={35} color='#aeaeae' />
           </div>
 
         {/* Drop down menu */}
