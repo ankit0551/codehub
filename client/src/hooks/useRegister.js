@@ -3,7 +3,7 @@ import axios from "axios";
 
 let useRegister = async (inputs)=>{
     try{
-        let res = await axios.post('http://localhost:8080/user/register', inputs , {
+        let res = await axios.post(`${import.meta.env.VITE_SERVER_URL}/user/register`, inputs , {
             headers : {
                 'Content-Type' : 'application/json'
             }

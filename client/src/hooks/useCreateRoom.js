@@ -2,7 +2,7 @@ import axios from "axios";
 
 const useCreateRoom = async (roomInfo)=>{
     try{
-        let res = await axios.post('http://localhost:8080/room/create', roomInfo, {
+        let res = await axios.post(`${import.meta.env.VITE_SERVER_URL}/room/create`, roomInfo, {
             headers : {
                 'Content-Type' : 'application/json'
             }
