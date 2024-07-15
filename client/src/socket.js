@@ -10,5 +10,5 @@ export const initSocket = async ()=>{
     };
 
 
-    return io('http://localhost:8080', options);
+    return io(`${import.meta.env.VITE_SERVER_URL}`, options);
 }
