@@ -6,12 +6,12 @@ import useStore from '../../store/store';
 
 const CreateRoom = ({roomInfo , setRoomInfo}) => {
     let navigate = useNavigate();
-    // const setUser = useStore((state)=> state.setUser)
+    const token = useStore((state)=> state.token);
 
     async function handelSubmit(e){
         e.preventDefault();
         try{
-            let res = await useCreateRoom(roomInfo);
+            let res = await useCreateRoom(roomInfo, token);
             if(res.error){
                 toast.error(res.error);
                 return;

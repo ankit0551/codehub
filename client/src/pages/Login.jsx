@@ -14,6 +14,7 @@ const Login = () => {
   const navigate = useNavigate();
 
   const setUser = useStore((state)=> state.setUser);
+  const setToken = useStore((state) => state.setToken);
 
   async function handelSubmit(e){
     e.preventDefault();
@@ -27,7 +28,9 @@ const Login = () => {
       toast.error(data.error);
     }
     if(data.success){
+      console.log(data);
       setUser(data.user);
+      setToken(data.token);
       localStorage.setItem('_l_user', JSON.stringify(data.user));
       toast.success(data.success);
       navigate('/')
@@ -40,10 +43,10 @@ const Login = () => {
     
       <div className='min-w-[500px] bg-[#151515] p-4 rounded-xl text-[#aeaeae]'>
         <div className='mb-[50px] mt-5 flex justify-center'>
-        <Link to={'/'}><h2 className='text-white tracking-tight  font-bold text-[50px]'><span>Code</span><span className='bg-blue-700 text-black rounded-[3px] px-1 mx-1'>Sync</span></h2></Link>
+        <Link to={'/'}><h2 className='text-white tracking-tight  font-bold text-[50px]'><span>Code</span><span className='bg-blue-700 text-black rounded-[3px] px-1 mx-1'>hub</span></h2></Link>
         </div>
         <h2 className='text-center text-2xl text-white font-semibold mb-1'>Member Sign in</h2>
-        <p className='text-center'>Access your codeSync account</p>
+        <p className='text-center'>Access your codehub account</p>
         <div>
 
         </div>
@@ -57,7 +60,7 @@ const Login = () => {
           </div>
           
           <div className='flex flex-col justify-between items-center my-5'>
-            <button className='rounded-sm text-[#969696] font-semibold bg-[#2f2f2f] py-2 px-8 hover:bg-blue-700 hover:text-black'>Sign in</button>
+            <button disabled={loading} className='rounded-sm text-[#969696] font-semibold bg-[#2f2f2f] py-2 px-8 hover:bg-blue-700 hover:text-black'>Sign in</button>
           </div>
         </form>
         <div className='text-center'>

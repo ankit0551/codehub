@@ -1,4 +1,4 @@
-import React, { useRef } from 'react'
+import React, { useEffect, useRef } from 'react'
 import { Link, useNavigate } from 'react-router-dom'
 import useStore from '../store/store';
 import { FaUserCircle } from "react-icons/fa";
@@ -20,14 +20,13 @@ const Navbar = () => {
 
   }
 
-  if(user){
+
     window.onclick = (e) => {
-      if (!e.target.matches('.user')) {
+      if (user) {
         profileMenuRef.current.style.display = "none"
       }
     }
-  }
-
+ 
   function handelShowProfile() {
     if (profileMenuRef.current.style.display === "none") {
       profileMenuRef.current.style.display = "initial"
@@ -37,15 +36,15 @@ const Navbar = () => {
 
   }
   return (
-    <nav className='py-3 px-10 max-h-[7vh] flex justify-between items-center shadow-lg bg-[#0e0e0e]'>
+    <nav className='py-3 max-h-[7vh] px-10 flex justify-between items-center shadow-lg bg-[#0e0e0e]'>
       <div>
-        <Link to={'/'}><h2 className='text-white tracking-tight  font-bold text-3xl'><span>Code</span><span className='bg-blue-700 text-black rounded-[3px] px-1 mx-1 py-1'>Sync</span></h2></Link>
+        <Link to={'/'}><h2 className='text-white tracking-tight  font-bold text-3xl'><span>Code</span><span className='bg-blue-700 text-black rounded-[3px] px-1 mx-1 py-0'>hub</span></h2></Link>
       </div>
 
       {
         user ? <div className='flex gap-4 text-[#aeaeae] relative ' >
-          <div onClick={handelShowProfile}  className='p-1 bg-[#181818] cursor-pointer rounded-[50%] shadow-lg'>
-            <FaUserCircle  className='user'  size={35} color='#aeaeae' />
+          <div   className='p-1 bg-[#181818] cursor-pointer rounded-[50%] shadow-lg'>
+            <FaUserCircle onMouseEnter={handelShowProfile} className='user'  size={35} color='#aeaeae' />
           </div>
 
         {/* Drop down menu */}

@@ -4,7 +4,7 @@ const Room = require('../models/Room');
 const {isLogin} = require('../middlewares/middleware')
 
 
-router.post('/create', async (req, res)=> {
+router.post('/create',isLogin, async (req, res)=> {
     const  {roomname, owner, roomId} = req.body;
     try{
         let room = await Room.findOne({roomname});
@@ -20,7 +20,7 @@ router.post('/create', async (req, res)=> {
 })
 
 
-router.get('/getRoom/:id', async(req, res)=>{
+router.get('/getRoom/:id',isLogin, async(req, res)=>{
     const {id} = req.params;
     try{
         let room = await Room.findOne({roomId:id});

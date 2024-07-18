@@ -2,15 +2,16 @@ import React from 'react'
 import { useNavigate } from 'react-router-dom';
 import useJoinRoom from '../../hooks/useJoinRoom';
 import toast from 'react-hot-toast';
+import useStore from '../../store/store';
 
 
 const JoinRoom = ({ roomInfo, setRoomInfo }) => {
     let navigate = useNavigate();
+    const token = useStore((state)=> state.token);
 
     async function handelSubmit(e) {
         e.preventDefault();
-        // console.log(roomInfo.roomId)
-        let res = await useJoinRoom(roomInfo.roomId);
+        let res = await useJoinRoom(roomInfo.roomId, token);
         if(res.error){
             toast.error(res.error);
             return;

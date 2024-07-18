@@ -27,9 +27,8 @@ router.post('/register', async(req, res)=>{
             rooms : user.rooms,
             forkedRooms : user.forkedRooms
         }
-        let token = jwt.sign({user}, "secretkey");
-        res.cookie("token", token);
-        res.send({success : "user created successfuly", user : newUser});
+        let token = jwt.sign({user}, process.env.KEY);
+        res.send({success : "user created successfuly", user : newUser, token});
 
     }catch(err){
         res.send({error : err});
@@ -50,11 +49,10 @@ router.post('/login', async (req, res)=>{
             res.send({error : "Wrong credintials."});
             return;
         }
-        user = {username : user.username, email : user.email, fullname : user.fullname,rooms : user.rooms,
+        user = {username : user.username, email : user.email, fullname : user.fullname, rooms : user.rooms,
             forkedRooms : user.forkedRooms};
-        let token = jwt.sign({user}, "secretkey");
-        res.cookie("token", token);
-        res.send({success : "login successfull",user });
+        let token = jwt.sign({user}, process.env.KEY);
+        res.send({success : "login successfull",user, token});
 
     }catch(err){
         console.log(err);

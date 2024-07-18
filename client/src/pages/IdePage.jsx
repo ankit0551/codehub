@@ -133,10 +133,10 @@ const IdePage = () => {
   return (
     <>{roomLoading ? <div className="h-full w-full"> Loading</div> :
     <div className="flex h-full text-[#aeaeae]">
-      <SideMenu setActiveTab={setActiveTab} id={id}  />
+      <SideMenu setActiveTab={setActiveTab} activeTab={activeTab} id={id}  />
       <div className="flex flex-col w-[250px] bg-[#151515] border-r-[2px]  p-3 border-gray-700">
         <h3 className="text-center text-2xl font-semibold p-1 bg-[#aeaeae] text-black rounded-lg">{roomInfo.roomname}</h3>
-        <div>
+        <div className="h-full">
           {tabs[activeTab]}
         </div>
       </div>
