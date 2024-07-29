@@ -32,6 +32,7 @@ const IdePage = () => {
 
   const setChat = useStore((state)=> state.setChat);
   const user = useStore((state)=> state.user);
+  const token = useStore((state)=> state.token);
   let rnavigator = useNavigate();
   let location = useLocation();
   let { id } = useParams();
@@ -45,7 +46,7 @@ const IdePage = () => {
     if(!location.state){
       (async()=>{
         setRoomLoading(true);
-        let res = await useJoinRoom(id);
+        let res = await useJoinRoom(id,token);
         setRoomLoading(false);
         if(res.error){
           toast.error(res.error);

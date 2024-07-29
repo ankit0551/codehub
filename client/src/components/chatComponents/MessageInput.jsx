@@ -5,7 +5,7 @@ import useStore from '../../store/store';
 
 const MessageInput = ({socketRef}) => {
   const user = useStore((state)=> state.user);
-  const setChat = useStore((state)=> state.setChat)
+  const setChat = useStore((state)=> state.setChat);
   let {id} = useParams();
   
   const [message, setMessage] = useState("");

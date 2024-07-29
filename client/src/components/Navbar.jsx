@@ -7,15 +7,22 @@ import { VscEditorLayout } from "react-icons/vsc";
 import { MdSubscriptions } from "react-icons/md";
 import { FaRegUser } from "react-icons/fa6";
 import { TiTick } from "react-icons/ti";
+import { useCookies } from 'react-cookie';
+
 
 const Navbar = () => {
   const user = useStore((state) => state.user);
   const setUser = useStore((state) => state.setUser);
   const navigate = useNavigate();
   const profileMenuRef = useRef()
+  const [cookie, setCookie, removeCookie] = useCookies();
+
+
   function handelLogout() {
+    console.log(cookie.__stid);
     setUser(null);
     localStorage.setItem('_l_user', null);
+    removeCookie('__stid');
     navigate('/login');
 
   }

@@ -3,12 +3,15 @@ import { Link, useNavigate } from 'react-router-dom'
 import useLogin from '../hooks/useLogin'
 import toast from 'react-hot-toast';
 import useStore from '../store/store';
+import { useCookies } from 'react-cookie';
 
 const Login = () => {
   const [inputs, setInputs] = useState({
     email: "",
     password: "",
   })
+
+  const [cookie, setCookie] = useCookies();
 
   const [loading, setLoading] = useState(false);
   const navigate = useNavigate();
@@ -39,6 +42,7 @@ const Login = () => {
 
       setUser(data.user);             // saving user data in zustand data store  
       setToken(data.token);           // saving token in zustand store
+      setCookie("__stid",data.token);
 
       localStorage.setItem('_l_user', JSON.stringify(data.user));       // saving user data to localstorage
       toast.success(data.success);
