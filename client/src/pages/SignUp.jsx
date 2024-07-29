@@ -6,7 +6,8 @@ import useStore from '../store/store';
 
 const SignUp = () => {
   const [loading, setLoading] = useState(false);
-  const setUser = useStore((state)=> state.setUser)
+  const setUser = useStore((state)=> state.setUser);
+  const setToken = useStore((state) => state.setToken);
   const [inputs, setInputs] = useState({
     username: "",
     email: "",
@@ -22,7 +23,10 @@ const SignUp = () => {
       return;
     }
     setLoading(true);
+    console.log("first")
     let data = await useRegister(inputs);
+    console.log("second")
+    console.log(data);
     // if(data.error){
     //   toast.error(data.error);
     // }
@@ -32,10 +36,15 @@ const SignUp = () => {
     // setLoading(false);
     // navigate('/login');
     if (data.error) {
-      toast.error(data.error);
+      if(data.error.code){
+        toast.error("Username already registered")
+      }else{
+        toast.error(data.error);
+      }
     }
     if (data.success) {
       setUser(data.user);
+      setToken(data.token);
       localStorage.setItem('_l_user', JSON.stringify(data.user));
       toast.success(data.success);
       setLoading(false);

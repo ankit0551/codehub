@@ -1,12 +1,13 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 import ChatBox from '../chatComponents/ChatBox'
 import MessageInput from '../chatComponents/MessageInput'
 
-const Chat = () => {
+const Chat = ({socketRef}) => {
+
   return (
-    <div className='flex flex-col h-full py-2'>
+    <div className='flex flex-col gap-2 h-full py-2'>
       <ChatBox />
-      <MessageInput />
+      <MessageInput socketRef={socketRef} />
     </div>
   )
 }

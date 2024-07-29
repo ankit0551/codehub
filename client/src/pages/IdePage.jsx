@@ -16,7 +16,7 @@ import useJoinRoom from '../hooks/useJoinRoom';
 
 
 const IdePage = () => {
-  const [language, setLanguage] = useState('javascript');
+  const [language, setLanguage] = useState('java');
   const editorRef = useRef(null);
   const [code, setCode] = useState("");
   const [clients, setClients] = useState([]);
@@ -27,16 +27,17 @@ const IdePage = () => {
   const [loading, setLoading] = useState(false);
   const [roomInfo , setRoomInfo] = useState({});
   const [roomLoading, setRoomLoading] = useState(false);
+ 
   
 
-
+  const setChat = useStore((state)=> state.setChat);
   const user = useStore((state)=> state.user);
   let rnavigator = useNavigate();
   let location = useLocation();
   let { id } = useParams();
   const tabs = {
     "clients": <Clients clients={clients} />,
-    "chat": <Chat />
+    "chat": <Chat socketRef={socketRef} />
   }
   
 
@@ -94,6 +95,10 @@ const IdePage = () => {
         editorRef.current.setValue(code);
       }
     })
+
+    socketRef.current.on('recivedMessage', (item)=> {
+      setChat(item);
+    })
   }
 
   init();
@@ -134,7 +139,7 @@ const IdePage = () => {
     <>{roomLoading ? <div className="h-full w-full"> Loading</div> :
     <div className="flex h-full text-[#aeaeae]">
       <SideMenu setActiveTab={setActiveTab} activeTab={activeTab} id={id}  />
-      <div className="flex flex-col w-[250px] bg-[#151515] border-r-[2px]  p-3 border-gray-700">
+      <div className="flex h-full  flex-col w-[250px] bg-[#191818] border-r-[2px]  p-3 border-gray-700">
         <h3 className="text-center text-2xl font-semibold p-1 bg-[#aeaeae] text-black rounded-lg">{roomInfo.roomname}</h3>
         <div className="h-full">
           {tabs[activeTab]}

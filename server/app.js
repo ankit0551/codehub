@@ -20,7 +20,7 @@ mongoose.connect(process.env.DB_URL).then(()=>{
 })
 
 app.use(cors({
-    origin: ['http://localhost:5173',"https://codehub-eight.vercel.app"],
+    origin: ['http://localhost:5173',"https://codehub-eight.vercel.app", "https://codestrike.vercel.app"],
     credentials: true,
 }));
 app.use(express.json());
@@ -80,6 +80,13 @@ io.on('connection', (socket) => {
         //     })
         // }
         // })
+    })
+
+    socket.on('sendMessage', ({message, roomId, username})=>{
+        socket.in(roomId).emit('recivedMessage', {
+            message,
+            username,
+        })
     })
 
 
