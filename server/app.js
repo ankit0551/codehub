@@ -22,6 +22,10 @@ mongoose.connect(process.env.DB_URL).then(()=>{
 app.use(cors({
     origin: ['http://localhost:5173',"https://codehub-eight.vercel.app", "https://codestrike.vercel.app"],
     credentials: true,
+    methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS'],
+    allowedHeaders: ['Content-Type', 'Authorization'],
+    preflightContinue: false,
+    optionsSuccessStatus: 204
 }));
 app.use(express.json());
 app.use(cookieParser());
